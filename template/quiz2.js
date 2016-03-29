@@ -4,10 +4,16 @@
 	// Use ajax to reach the api endpoint
 	// Whether or not you use jQuery, you still have to fix the jQuery errors. Removing jQuery is not fixing the problem.
 
+   items = null;
 	var mouseover = $('.mouse-over');
 	var click     = $('.click');
 	var sub       = $('.submit');
    var time      = $('.timeout');
+   var getTitle  = jQuery('#get-id');
+   var main      = jQuery('#main');
+   var sec       = jQuery('#secondary');
+   
+   sec.hide();
 
 	mouseover.mouseover( function() {
 		$this = $(this);
@@ -40,30 +46,73 @@
       
 	});
 
+   
+   getTitle.click( function() {
+      $.get({
+         url: "http://www.mattbowytz.com/simple_api.json",
+         data: {
+            "data": "quizData"
+         },
+         success: function(data) {
+            //console.log("data: " + data);
+            items = data.data;
+            //console.log("items: " + items);  
+            //once I have data call function
+            sectionTwo();
+         }
+      });
+      //hide main div
+      main.hide();
+      //show secondary div
+      sec.show();
+   });
+   
+   
 })();
 
-/**
- * calls $.get()
- * no params
- * no return
- */
-function get(){
-   var topic = jQuery('#select-id');
-   $.get({
-      url: "http://www.mattbowytz.com/simple_api.json",
-      data: {
-         "data": "quizData"
-      },
-      success: function(data) {
-         console.log("data: " + data);
-         items = data.data;
-         console.log("items: " + items);
-         if (items.constructor === Object){
-            //merge both programming and interest Objects
-            items = $.merge(data.data.interests, data.data.programming);
-            //console.log("items2: " + items);
-         }
-            
-      }
-   });
+function sectionTwo(){      
+   var string = "";
+   console.log("itemsGG: " + items);
+   makeNewButton("change-id","Change It!",changeIt);
+   //string = randomString(items);
+   //updateDisplay(string);
+}
+
+function changeIt(){
+   console.log("change it");
+   var string = randomString(items);
+   updateDisplay(string);
+   if (document.getElementById("keep-id") == null){
+      makeNewButton("keep-id","Keep It!",keepIt);
+   }
+}
+
+function keepIt(){
+   console.log("keep it");
+}
+
+function makeNewButton(id,name,prop){
+   var elem = document.createElement('input');
+   elem.setAttribute('type', 'button');
+   elem.setAttribute('id', id);
+   elem.setAttribute('value', name);
+   if (elem.addEventListener) {
+      //alert('DOM 2 Compatible');
+      elem.addEventListener('click',prop, false); 
+   }
+   else if (elem.attachEvent) {
+      alert('Old IE Being Used');
+      elem.attachEvent('onclick',prop);
+   }
+   var sec = document.getElementById("buttons");
+   sec.appendChild(elem);
+}
+
+function randomString(){
+   return items[Math.floor(Math.random() * items.length)];
+}
+
+function updateDisplay(string){
+   var display = document.getElementById("display");
+   display.innerHTML = "<h1>" + string + "</h1>";
 }

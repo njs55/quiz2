@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		
-		<div class="content">
+		<div class="content" id="main">
 			<h1>Hi, Welcome to the second quiz!</h1>
 			<p>Make sure the containers below respond to the events or functions implemented with quiz2.js</p>
 			<div class="events">			
@@ -19,12 +19,12 @@
 					<p>Who's the richest person you know? (mouse over to find out)</p>
 				</div>
 				<div>
-					<!--<span>submit event</span>-->
+					<span>submit event</span>
 					<!-- The form not having an action or method is not a bug in this case -->
 					<form class="submit">
 						<label for="form">AJAX, yo!</label>
-						<input type="text" id="form" name="form" placeholder="Enter Some Text" />
-						<button class="submit-style" type="submit" value="SUBMIT">Submit</button>
+						<input type="text" id="form" name="form" placeholder="Enter Some Text">
+						<input class="submit-style" type="submit" value="SUBMIT">
 					</form>
 				</div>
 				<div class="timeout">
@@ -34,10 +34,18 @@
          <br />
          <br />
          <div>
-            <button class="submit-style" type="submit">Get Title</button>
+            <button class="submit-style" id="get-id" type="submit">Get Title</button>
          </div>
+      </div>         
          
-		</div>
+      <div class="content" id="secondary">
+         <!--<h1>New Page!</h1>-->
+         <div id="display"></div>
+         <div id="buttons"></div>
+         <!--<button class="submit-style" id="change-id" type="submit">Change It!</button>-->
+      </div>
+         
+		
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
       <script src="quiz2.js"></script>
