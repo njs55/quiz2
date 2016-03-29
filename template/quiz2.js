@@ -1,9 +1,9 @@
 (function(){
-	// This is where you will write your function for the programming challenge
-	// Do not commit console.log statements
-	// Use ajax to reach the api endpoint
-	// Whether or not you use jQuery, you still have to fix the jQuery errors. Removing jQuery is not fixing the problem.
-
+   // This is where you will write your function for the programming challenge
+   // Do not commit console.log statements
+   // Use ajax to reach the api endpoint
+   // Whether or not you use jQuery, you still have to fix the jQuery errors. Removing jQuery is not fixing the problem.
+   
    items = null;
    var mouseover = $('.mouse-over');
    var click     = $('.click');
@@ -26,40 +26,40 @@
    }
    
    //mouseover
-	mouseover.mouseover( function() {
-		$this = $(this);
-		$(this).html('Scrooge McDuck!');
-		//$(this).height($(this).height() + 50);
-	});
-
+   mouseover.mouseover( function() {
+      $this = $(this);
+      $(this).html('Scrooge McDuck!');
+      //$(this).height($(this).height() + 50);
+   });
+   
    //click on text and change to "peace out" then fades out
-	click.click(function() {
-		$(this).text('Peace Out!')
-		$(this).fadeOut(1500);
-		return false;
-	});
-
+   click.click(function() {
+      $(this).text('Peace Out!')
+      $(this).fadeOut(1500);
+      return false;
+   });
+   
    //if you enter something in box it desplays congrats
    //then we fade out the submit button and text field
-	sub.submit( function(e) {
+   sub.submit( function(e) {
       console.log("submit");
-		e.preventDefault();
-		if ($(this).find('input[type="text"]').val() !== '') {
-			$(this).find('input').each(function() {
-				$(this).fadeOut("slow");
-			});
-			$(this).append("<h2>Congratulations! You've entered some text!</h2>");
-		}
-	});
-
+      e.preventDefault();
+      if ($(this).find('input[type="text"]').val() !== '') {
+         $(this).find('input').each(function() {
+            $(this).fadeOut("slow");
+         });
+         $(this).append("<h2>Congratulations! You've entered some text!</h2>");
+      }
+   });
+   
    //the word "timeout" is delayed when printed to console but not screen
-	time.ready( function() {
-		setTimeout(function(){
+   time.ready( function() {
+      setTimeout(function(){
          //console.log("timeout");
-			$(this).fadeIn("slow");
-		}, 1000);
+         $(this).fadeIn("slow");
+      }, 1000);
       
-	});
+   });
    
    //when the Get Title button is clicked we hide the main div and show secondary div
    //also call get() which makes an ajax request
