@@ -13,7 +13,18 @@
    var main      = jQuery('#main');
    var sec       = jQuery('#secondary');
    
-   sec.hide();
+   
+   if(document.cookie.length > 0){
+      get();
+      main.hide();
+      sec.show();      
+      updateDisplay(document.cookie);
+   }
+   else{
+      sec.hide();
+   }
+   
+   //console.log(document.cookie);
 
 	mouseover.mouseover( function() {
 		$this = $(this);
@@ -40,27 +51,15 @@
 
 	time.ready( function() {
 		setTimeout(function(){
-         console.log("timeout");
+         //console.log("timeout");
 			$(this).fadeIn("slow");
 		}, 1000);
       
 	});
 
    
-   getTitle.click( function() {
-      $.get({
-         url: "http://www.mattbowytz.com/simple_api.json",
-         data: {
-            "data": "quizData"
-         },
-         success: function(data) {
-            //console.log("data: " + data);
-            items = data.data;
-            //console.log("items: " + items);  
-            //once I have data call function
-            sectionTwo();
-         }
-      });
+   getTitle.on('click', function() {
+      get();      
       //hide main div
       main.hide();
       //show secondary div
@@ -70,16 +69,11 @@
    
 })();
 
-function sectionTwo(){      
-   var string = "";
-   console.log("itemsGG: " + items);
+function sectionTwo(){ 
    makeNewButton("change-id","Change It!",changeIt);
-   //string = randomString(items);
-   //updateDisplay(string);
 }
 
 function changeIt(){
-   console.log("change it");
    var string = randomString(items);
    updateDisplay(string);
    if (document.getElementById("keep-id") == null){
@@ -88,7 +82,7 @@ function changeIt(){
 }
 
 function keepIt(){
-   console.log("keep it");
+   document.cookie = document.getElementById("display").textContent;
 }
 
 function makeNewButton(id,name,prop){
@@ -96,8 +90,8 @@ function makeNewButton(id,name,prop){
    elem.setAttribute('type', 'button');
    elem.setAttribute('id', id);
    elem.setAttribute('value', name);
+   elem.setAttribute('class',"button-style");
    if (elem.addEventListener) {
-      //alert('DOM 2 Compatible');
       elem.addEventListener('click',prop, false); 
    }
    else if (elem.attachEvent) {
@@ -115,4 +109,17 @@ function randomString(){
 function updateDisplay(string){
    var display = document.getElementById("display");
    display.innerHTML = "<h1>" + string + "</h1>";
+}
+
+function get() {
+   $.get({
+      url: "http://www.mattbowytz.com/simple_api.json",
+      data: {
+         "data": "quizData"
+      },
+      success: function(data) {
+         items = data.data;
+         sectionTwo();
+      }
+   });
 }
