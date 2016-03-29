@@ -8,11 +8,13 @@ a {
 	color: #0078A0;
 }
 
+/*I added this*/
 span{
    font-weight: bold;
    font-size: 18px;
 }
 
+/*I added this*/
 .button-style {
    width: 25%;
    background-color: #4CAF50;
@@ -26,9 +28,21 @@ span{
    text-align: center;
 }
 
+/*I added this*/
+.submit-style{
+   height:30px;
+   width:200px;
+   display: inline-block;
+}
+
+/*I added this*/
+.timeout {
+   display: none;
+}
+
 .content {
 	text-align: center;
-	padding: 10px 15% 20px 10px;
+	padding: 10px 15px 15px 10px;
 }
 
 .content h1 {
@@ -49,10 +63,4 @@ span{
 	color: #107394;
 	background: transparent;
 	margin-bottom: 15px;
-}
-
-.submit-style{
-   height:30px;
-   width:200px;
-   display: inline-block;
 }

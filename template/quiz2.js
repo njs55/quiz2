@@ -30,6 +30,7 @@
       $this = $(this);
       $(this).html('Scrooge McDuck!');
       //$(this).height($(this).height() + 50);
+      $(this).height();
    });
    
    //click on text and change to "peace out" then fades out
@@ -42,7 +43,6 @@
    //if you enter something in box it desplays congrats
    //then we fade out the submit button and text field
    sub.submit( function(e) {
-      console.log("submit");
       e.preventDefault();
       if ($(this).find('input[type="text"]').val() !== '') {
          $(this).find('input').each(function() {
@@ -53,10 +53,10 @@
    });
    
    //the word "timeout" is delayed when printed to console but not screen
+   //time.hide();
    time.ready( function() {
       setTimeout(function(){
-         //console.log("timeout");
-         $(this).fadeIn("slow");
+         $(".timeout").fadeIn("slow");
       }, 1000);
       
    });
@@ -67,9 +67,7 @@
       get();      
       main.hide();
       sec.show();
-   });
-   
-   
+   });   
 })();
 
 /**makes the ajax call
