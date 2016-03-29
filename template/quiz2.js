@@ -29,8 +29,7 @@
    mouseover.mouseover( function() {
       $this = $(this);
       $(this).html('Scrooge McDuck!');
-      //$(this).height($(this).height() + 50);
-      $(this).height();
+      $(this).height($(this).height() + 50);
    });
    
    //click on text and change to "peace out" then fades out
